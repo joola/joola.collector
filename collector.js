@@ -78,7 +78,7 @@ r.connect(config.rethinkdb, function (err, conn) {
 
         async.mapLimit(results, 3, function (usage, callback) {
           var postOptions = {
-            url: config.cnc.engine + '/api/applications/usage?APIToken=' + config.cnc.apitoken,
+            url: config.cnc.engine + '/api/applications/appusage?APIToken=' + config.cnc.apitoken,
             headers: {
               'Content-Type': 'application/json'
             },
