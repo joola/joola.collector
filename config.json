@@ -1,6 +1,6 @@
 {
   "cnc": {
-    "engine": "https://localhost:9091",
+    "engine": "https://cnc.joo.la",
     "apitoken":"3oJ03Pxrezz3PWe8JGgjlTqJPjJ1pnax"
   },
   "rethinkdb": {
