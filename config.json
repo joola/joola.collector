@@ -4,7 +4,7 @@
     "apitoken":"3oJ03Pxrezz3PWe8JGgjlTqJPjJ1pnax"
   },
   "rethinkdb": {
-    "host": "130.211.144.170",
+    "host": "10.240.239.74",
     "port": 28015
   }
 }
