@@ -8,7 +8,7 @@ var
 
 var last_timestamp = null;
 try {
-  last_timestamp = require('./.last_timestamp.json').timestamp;
+  last_timestamp = require('/opt/joola/joola.collect/last_timestamp.json').timestamp;
   last_timestamp = new Date(last_timestamp);
   console.log('Found last used timestamp, ' + last_timestamp.toISOString());
 }
@@ -115,7 +115,7 @@ r.connect(config.rethinkdb, function (err, conn) {
 });
 
 function saveTimestamp(ts) {
-  var outputFilename = '.last_timestamp.json';
+  var outputFilename = '/opt/joola/joola.collect/last_timestamp.json';
 
   fs.writeFileSync(outputFilename, JSON.stringify({timestamp: ts}, null, 4));
   console.log("JSON saved to " + outputFilename);
