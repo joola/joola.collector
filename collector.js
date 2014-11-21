@@ -71,13 +71,13 @@ r.connect(config.rethinkdb, function (err, conn) {
     }, function (err, results) {
       if (err)
         throw err;
-      console.log('All done', results);
       var _results = [];
       results.forEach(function (r) {
         if (r)
           _results.push(r);
       });
       results = _results;
+      console.log('All done', results);
       r.db('joola_stats_223').table('workspace_app_usage').insert(results).run(conn, function (err) {
         if (err)
           throw err;
