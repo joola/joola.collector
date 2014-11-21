@@ -33,7 +33,8 @@ r.connect(config.rethinkdb, function (err, conn) {
         uid: null,
         reads: 0,
         writes: 0,
-        simple: 0
+        simple: 0,
+        total: 0
       };
 
       r.db(item).table('_metadata').pluck('uid_app').limit(1).run(conn, function (err, cursor) {
@@ -60,7 +61,10 @@ r.connect(config.rethinkdb, function (err, conn) {
               result.writes = results;
 
             result.total = result.writes + result.reads + result.simple;
-            return callback(null, result);
+            if (result.total > 0 && result.uid !== 'joola-stats-223')
+              return callback(null, result);
+            else
+              return callback(null);
           });
         });
       });
@@ -68,7 +72,12 @@ r.connect(config.rethinkdb, function (err, conn) {
       if (err)
         throw err;
       console.log('All done', results);
-
+      var _results = [];
+      results.forEach(function (r) {
+        if (r)
+          _results.push(r);
+      });
+      results = _results;
       r.db('joola_stats_223').table('workspace_app_usage').insert(results).run(conn, function (err) {
         if (err)
           throw err;
